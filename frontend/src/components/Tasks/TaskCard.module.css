@@ -1,0 +1,251 @@
+/* TaskCard.module.css - Individual task card component */
+
+/* Card container */
+.card {
+  padding: var(--spacing-md);
+  background-color: var(--color-bg-white);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  display: flex;
+  align-items: flex-start;
+  gap: var(--spacing-md);
+  transition: all var(--transition-fast);
+}
+
+.card:hover {
+  box-shadow: var(--shadow-md);
+  border-color: var(--color-border-light);
+}
+
+.card:focus-within {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+}
+
+/* Status badge - clickable */
+.statusBadge {
+  padding: var(--spacing-xs) var(--spacing-sm);
+  background-color: #9ca3af;
+  color: var(--color-bg-white);
+  border-radius: var(--radius-md);
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-semibold);
+  white-space: nowrap;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  border: 1px solid transparent;
+  flex-shrink: 0;
+}
+
+.statusBadge:hover {
+  transform: scale(1.05);
+  box-shadow: var(--shadow-sm);
+}
+
+.statusBadge:focus {
+  outline: none;
+  box-shadow: 0 0 0 2px var(--color-bg-white), 0 0 0 4px rgba(37, 99, 235, 0.3);
+}
+
+.statusBadge:active {
+  transform: scale(0.98);
+}
+
+/* Status color variants */
+.statusTodo {
+  background-color: #ef4444;
+}
+
+.statusInProgress {
+  background-color: #f59e0b;
+}
+
+.statusDone {
+  background-color: #10b981;
+}
+
+/* Content area */
+.content {
+  flex: 1;
+  min-width: 0;
+}
+
+/* Task title */
+.title {
+  font-size: var(--font-size-base);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-text);
+  margin: 0 0 var(--spacing-xs) 0;
+  word-break: break-word;
+  line-height: var(--line-height-normal);
+}
+
+/* Task description */
+.description {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-light);
+  margin: 0 0 var(--spacing-sm) 0;
+  word-break: break-word;
+  line-height: var(--line-height-normal);
+}
+
+/* Meta information container */
+.meta {
+  display: flex;
+  gap: var(--spacing-md);
+  flex-wrap: wrap;
+  font-size: var(--font-size-xs);
+}
+
+/* Priority badge */
+.priority {
+  padding: var(--spacing-xs) var(--spacing-sm);
+  border-radius: var(--radius-sm);
+  display: inline-block;
+  font-weight: var(--font-weight-medium);
+}
+
+.priorityLow {
+  background-color: rgba(156, 163, 175, 0.2);
+  color: #9ca3af;
+}
+
+.priorityMedium {
+  background-color: rgba(245, 158, 11, 0.2);
+  color: #f59e0b;
+}
+
+.priorityHigh {
+  background-color: rgba(239, 68, 68, 0.2);
+  color: #ef4444;
+}
+
+/* Due date badge */
+.dueDate {
+  padding: var(--spacing-xs) var(--spacing-sm);
+  border-radius: var(--radius-sm);
+  display: inline-block;
+  font-weight: var(--font-weight-medium);
+}
+
+.dueDateNormal {
+  background-color: rgba(30, 64, 175, 0.15);
+  color: #1e40af;
+}
+
+.dueDateOverdue {
+  background-color: rgba(153, 27, 27, 0.15);
+  color: #991b1b;
+}
+
+/* Actions container */
+.actions {
+  display: flex;
+  gap: var(--spacing-sm);
+  flex-shrink: 0;
+}
+
+/* Action button */
+.actionButton {
+  padding: var(--spacing-xs) var(--spacing-sm);
+  font-size: var(--font-size-xs);
+  background-color: var(--color-primary-light);
+  color: var(--color-bg-white);
+  border: none;
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  font-weight: var(--font-weight-medium);
+  transition: all var(--transition-fast);
+  white-space: nowrap;
+}
+
+.actionButton:hover {
+  opacity: 0.9;
+  transform: translateY(-1px);
+}
+
+.actionButton:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+}
+
+.actionButton:active {
+  transform: translateY(0);
+}
+
+/* Delete button variant */
+.actionButtonDelete {
+  background-color: var(--color-error);
+}
+
+.actionButtonDelete:hover {
+  opacity: 0.9;
+}
+
+.actionButtonDelete:focus {
+  box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.1);
+}
+
+/* Responsive Design - Tablet (640px - 1024px) */
+@media (max-width: 1024px) {
+  .card {
+    padding: var(--spacing-sm);
+    gap: var(--spacing-sm);
+  }
+
+  .title {
+    font-size: var(--font-size-sm);
+  }
+
+  .description {
+    font-size: var(--font-size-xs);
+  }
+
+  .meta {
+    gap: var(--spacing-sm);
+  }
+
+  .actionButton {
+    padding: var(--spacing-xs) var(--spacing-sm);
+  }
+}
+
+/* Responsive Design - Mobile (<640px) */
+@media (max-width: 640px) {
+  .card {
+    flex-direction: column;
+    align-items: stretch;
+    padding: var(--spacing-sm);
+  }
+
+  .statusBadge {
+    align-self: flex-start;
+  }
+
+  .content {
+    order: 2;
+  }
+
+  .actions {
+    order: 3;
+    justify-content: flex-start;
+  }
+
+  .meta {
+    flex-direction: column;
+    gap: var(--spacing-xs);
+  }
+
+  .actionButton {
+    flex: 1;
+    text-align: center;
+  }
+
+  .title {
+    font-size: var(--font-size-sm);
+  }
+
+  .description {
+    font-size: var(--font-size-xs);
+  }
+}

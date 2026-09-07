@@ -1,0 +1,298 @@
+/* ProjectList.module.css - Project listing and management */
+
+/* Container */
+.container {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Loading state text */
+.loadingText,
+.errorText {
+  font-size: var(--font-size-sm);
+  margin: 0;
+}
+
+.loadingText {
+  color: var(--color-text-light);
+}
+
+.errorText {
+  color: var(--color-error);
+}
+
+/* Empty state container */
+.emptyContainer {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-md);
+}
+
+.emptyMessage {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-light);
+  margin: 0;
+}
+
+/* Project list wrapper */
+.projectsList {
+  margin-bottom: var(--spacing-md);
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-sm);
+}
+
+/* Individual project item */
+.projectItem {
+  padding: var(--spacing-sm);
+  background-color: transparent;
+  border: 1px solid transparent;
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: var(--spacing-sm);
+  transition: all var(--transition-fast);
+}
+
+.projectItem:hover {
+  background-color: var(--color-bg-light);
+  border-color: var(--color-border-light);
+}
+
+.projectItem:focus-within {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+}
+
+/* Selected project item */
+.projectItemSelected {
+  background-color: #dbeafe;
+  border-color: var(--color-primary);
+}
+
+/* Project name text */
+.projectName {
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-normal);
+  color: var(--color-text);
+  margin: 0;
+  flex: 1;
+  word-break: break-word;
+}
+
+.projectItemSelected .projectName {
+  font-weight: var(--font-weight-semibold);
+}
+
+/* Action buttons container */
+.actionButtons {
+  display: flex;
+  gap: var(--spacing-sm);
+}
+
+/* Small action buttons */
+.actionButton {
+  padding: var(--spacing-xs) var(--spacing-sm);
+  font-size: var(--font-size-xs);
+  background-color: var(--color-primary-light);
+  color: var(--color-bg-white);
+  border: none;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  font-weight: var(--font-weight-medium);
+  transition: all var(--transition-fast);
+  white-space: nowrap;
+}
+
+.actionButton:hover {
+  opacity: 0.9;
+  transform: translateY(-1px);
+}
+
+.actionButton:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+}
+
+.actionButton:active {
+  transform: translateY(0);
+}
+
+.actionButtonDelete {
+  background-color: var(--color-error);
+}
+
+.actionButtonDelete:hover {
+  opacity: 0.9;
+}
+
+.actionButtonDelete:focus {
+  box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.1);
+}
+
+/* New Project Button */
+.newProjectButton {
+  width: 100%;
+  padding: var(--spacing-sm) var(--spacing-sm);
+  font-size: var(--font-size-sm);
+  background-color: var(--color-primary);
+  color: var(--color-bg-white);
+  border: none;
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  font-weight: var(--font-weight-medium);
+  transition: all var(--transition-fast);
+}
+
+.newProjectButton:hover {
+  background-color: var(--color-primary-light);
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-md);
+}
+
+.newProjectButton:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+}
+
+.newProjectButton:active {
+  transform: translateY(0);
+}
+
+/* Modal Overlay */
+.modalOverlay {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: var(--z-modal);
+}
+
+/* Modal Content */
+.modalContent {
+  background-color: var(--color-bg-white);
+  padding: var(--spacing-lg);
+  border-radius: var(--radius-lg);
+  max-width: 400px;
+  width: 90%;
+  box-shadow: var(--shadow-xl);
+}
+
+.modalTitle {
+  font-size: var(--font-size-lg);
+  font-weight: var(--font-weight-semibold);
+  margin-bottom: var(--spacing-md);
+  color: var(--color-text);
+}
+
+.modalMessage {
+  color: var(--color-text-light);
+  margin-bottom: var(--spacing-lg);
+  font-size: var(--font-size-sm);
+}
+
+/* Modal Buttons */
+.modalButtons {
+  display: flex;
+  gap: var(--spacing-md);
+  justify-content: flex-end;
+  flex-wrap: wrap;
+}
+
+.modalButton {
+  padding: var(--spacing-sm) var(--spacing-md);
+  border: none;
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-medium);
+  transition: all var(--transition-fast);
+  min-width: 80px;
+}
+
+.modalButtonCancel {
+  background-color: var(--color-bg-light);
+  color: var(--color-text);
+  border: 1px solid var(--color-border);
+}
+
+.modalButtonCancel:hover {
+  background-color: var(--color-border-light);
+}
+
+.modalButtonCancel:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+}
+
+.modalButtonDelete {
+  background-color: var(--color-error);
+  color: var(--color-bg-white);
+}
+
+.modalButtonDelete:hover {
+  opacity: 0.9;
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-md);
+}
+
+.modalButtonDelete:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.1);
+}
+
+.modalButtonDelete:active {
+  transform: translateY(0);
+}
+
+/* Responsive Design - Tablet (640px - 1024px) */
+@media (max-width: 1024px) {
+  .projectItem {
+    padding: var(--spacing-xs);
+  }
+
+  .actionButton {
+    padding: var(--spacing-xs) var(--spacing-sm);
+    font-size: var(--font-size-xs);
+  }
+
+  .modalContent {
+    max-width: 90%;
+  }
+}
+
+/* Responsive Design - Mobile (<640px) */
+@media (max-width: 640px) {
+  .projectItem {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .actionButtons {
+    width: 100%;
+  }
+
+  .actionButton {
+    flex: 1;
+    text-align: center;
+  }
+
+  .modalButtons {
+    flex-direction: column-reverse;
+  }
+
+  .modalButton {
+    width: 100%;
+    min-width: unset;
+  }
+
+  .modalContent {
+    width: 95%;
+    max-width: none;
+    padding: var(--spacing-md);
+  }
+}

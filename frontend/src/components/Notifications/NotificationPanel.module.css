@@ -1,0 +1,114 @@
+.panel {
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  background: #f9f9f9;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.header {
+  padding: 16px;
+  border-bottom: 1px solid #e0e0e0;
+  background: #ffffff;
+  border-radius: 8px 8px 0 0;
+}
+
+.header h3 {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 600;
+  color: #333;
+}
+
+.list {
+  max-height: 400px;
+  overflow-y: auto;
+}
+
+.item {
+  padding: 12px 16px;
+  border-bottom: 1px solid #e0e0e0;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 12px;
+}
+
+.item:last-child {
+  border-bottom: none;
+}
+
+.item.overdue {
+  background: #fff3f3;
+  border-left: 4px solid #d32f2f;
+}
+
+.item.due_soon {
+  background: #fff8e1;
+  border-left: 4px solid #f57f17;
+}
+
+.content {
+  flex: 1;
+  min-width: 0;
+}
+
+.title {
+  font-size: 14px;
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 4px;
+  word-break: break-word;
+}
+
+.type {
+  margin-bottom: 4px;
+}
+
+.badge {
+  display: inline-block;
+  font-size: 12px;
+  padding: 2px 8px;
+  border-radius: 4px;
+  font-weight: 600;
+}
+
+.item.overdue .badge {
+  background: #d32f2f;
+  color: white;
+}
+
+.item.due_soon .badge {
+  background: #f57f17;
+  color: white;
+}
+
+.date {
+  font-size: 12px;
+  color: #666;
+}
+
+.dismiss {
+  background: none;
+  border: none;
+  font-size: 18px;
+  color: #999;
+  cursor: pointer;
+  padding: 0;
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  border-radius: 4px;
+  transition: all 0.2s ease;
+}
+
+.dismiss:hover {
+  background: rgba(0, 0, 0, 0.1);
+  color: #333;
+}
+
+.dismiss:active {
+  transform: scale(0.95);
+}

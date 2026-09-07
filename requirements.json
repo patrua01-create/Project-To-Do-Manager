@@ -1,0 +1,142 @@
+{
+  "project": {
+    "name": "Personal To-Do Manager",
+    "goal": "Multi-user task management application with OAuth authentication, real-time notifications, persistence, and automated tests."
+  },
+  "coreRules": {
+    "multiUser": true,
+    "dataIsolation": true,
+    "sharing": false
+  },
+  "authentication": {
+    "providers": [
+      "google",
+      "github"
+    ],
+    "logout": true,
+    "persistentSession": true,
+    "userProfile": {
+      "provider": "string",
+      "providerUserId": "string",
+      "email": "string",
+      "displayName": "string",
+      "avatarUrl": "string"
+    }
+  },
+  "entities": {
+    "project": {
+      "fields": [
+        "id",
+        "userId",
+        "name",
+        "createdAt"
+      ]
+    },
+    "task": {
+      "fields": [
+        "id",
+        "projectId",
+        "title",
+        "description",
+        "status",
+        "priority",
+        "dueDate",
+        "createdAt",
+        "updatedAt"
+      ],
+      "statusValues": [
+        "TODO",
+        "IN_PROGRESS",
+        "DONE"
+      ],
+      "priorityValues": [
+        "LOW",
+        "MEDIUM",
+        "HIGH"
+      ]
+    }
+  },
+  "projectManagement": {
+    "create": true,
+    "rename": true,
+    "delete": true,
+    "deleteStrategy": "cascade"
+  },
+  "taskManagement": {
+    "create": true,
+    "edit": true,
+    "delete": true,
+    "quickStatusChange": true
+  },
+  "searchAndFilters": {
+    "searchFields": [
+      "title",
+      "description"
+    ],
+    "statusFilter": true,
+    "priorityFilter": true,
+    "dueDateCategories": [
+      "OVERDUE",
+      "TODAY",
+      "NEXT_7_DAYS",
+      "ALL"
+    ]
+  },
+  "websocket": {
+    "enabled": true,
+    "authenticationRequired": true,
+    "notificationTypes": [
+      "OVERDUE",
+      "DUE_SOON"
+    ],
+    "initialBatchOnConnect": true,
+    "periodicChecks": true,
+    "checkIntervalMinutes": 5,
+    "clientMessages": [
+      "subscribe",
+      "ack"
+    ]
+  },
+  "ui": {
+    "responsive": true,
+    "loginProviders": [
+      "google",
+      "github"
+    ],
+    "sidebar": true,
+    "taskView": true,
+    "taskModal": true,
+    "search": true,
+    "filters": true,
+    "notifications": true,
+    "loadingState": true,
+    "emptyState": true,
+    "formValidation": true
+  },
+  "backend": {
+    "apiType": "REST",
+    "authorizationRequired": true,
+    "inputValidation": true,
+    "oauthSecurity": true
+  },
+  "database": {
+    "provider": "PostgreSQL",
+    "seedData": true
+  },
+  "tests": {
+    "oauthLoginMock": true,
+    "createProject": true,
+    "createTask": true,
+    "authorizationIsolation": true,
+    "websocketNotifications": true
+  },
+  "deliverables": {
+    "gitRepository": true,
+    "readme": true,
+    "apiDocumentation": true,
+    "oauthConfigurationGuide": true,
+    "websocketDocumentation": true,
+    "testInstructions": true,
+    "docker": true
+  }
+}

@@ -1,0 +1,326 @@
+/* AppLayout.module.css - Main application layout with responsive sidebar and nav */
+
+/* Main container - Flexbox layout */
+.container {
+  display: flex;
+  min-height: 100vh;
+  font-family: var(--font-family);
+  position: relative;
+}
+
+/* Hamburger menu button - hidden by default on desktop */
+.hamburger {
+  display: none;
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+  padding: 0.5rem;
+  color: var(--color-text);
+  transition: all var(--transition-fast);
+  flex-shrink: 0;
+  align-self: center;
+}
+
+.hamburger:hover {
+  transform: scale(1.1);
+}
+
+.hamburger:focus {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+}
+
+/* Sidebar - Left navigation panel */
+.sidebar {
+  width: 280px;
+  background-color: var(--color-bg-light);
+  border-right: 1px solid var(--color-border);
+  display: flex;
+  flex-direction: column;
+  padding: var(--spacing-md);
+  overflow-y: auto;
+}
+
+/* User Info section */
+.userInfo {
+  margin-bottom: var(--spacing-2xl);
+  padding-bottom: var(--spacing-md);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.userContainer {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+  margin-bottom: var(--spacing-md);
+}
+
+.userAvatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  object-fit: cover;
+  flex-shrink: 0;
+}
+
+.userDetails {
+  min-width: 0;
+  flex: 1;
+}
+
+.userName {
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-text);
+  margin: 0;
+}
+
+.userEmail {
+  font-size: var(--font-size-xs);
+  color: var(--color-text-light);
+  margin: 0;
+}
+
+.logoutButton {
+  width: 100%;
+  padding: var(--spacing-sm) var(--spacing-sm);
+  font-size: var(--font-size-sm);
+  background-color: var(--color-error);
+  color: var(--color-bg-white);
+  border: none;
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  font-weight: var(--font-weight-medium);
+  transition: all var(--transition-fast);
+}
+
+.logoutButton:hover {
+  opacity: 0.9;
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-md);
+}
+
+.logoutButton:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.1);
+}
+
+.logoutButton:active {
+  transform: translateY(0);
+}
+
+/* WebSocket Status indicator */
+.wsStatus {
+  margin-bottom: var(--spacing-lg);
+  padding: var(--spacing-sm);
+  border-radius: var(--radius-md);
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-medium);
+  text-align: center;
+}
+
+.wsStatusConnected {
+  background-color: #d1fae5;
+  color: #065f46;
+}
+
+.wsStatusDisconnected {
+  background-color: #fee2e2;
+  color: #991b1b;
+}
+
+/* Projects section */
+.projectsSection {
+  flex: 1;
+}
+
+.projectsTitle {
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-text);
+  margin-bottom: var(--spacing-md);
+}
+
+/* Notifications section */
+.notificationsSection {
+  margin-top: auto;
+  padding-top: var(--spacing-md);
+  border-top: 1px solid var(--color-border);
+}
+
+/* Main content area */
+.main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Top navigation bar */
+.navbar {
+  background-color: var(--color-bg-white);
+  border-bottom: 1px solid var(--color-border);
+  padding: var(--spacing-md) var(--spacing-xl);
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: var(--spacing-md);
+}
+
+.navbarTitle {
+  font-size: var(--font-size-2xl);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-text);
+  margin: 0;
+  flex: 1;
+}
+
+/* Content area */
+.content {
+  flex: 1;
+  padding: var(--spacing-xl);
+  overflow-y: auto;
+}
+
+/* Responsive Design - Tablet (640px - 1024px) */
+@media (max-width: 1024px) {
+  .sidebar {
+    width: 240px;
+    padding: var(--spacing-md);
+  }
+
+  .navbar {
+    padding: var(--spacing-md) var(--spacing-lg);
+  }
+
+  .navbarTitle {
+    font-size: var(--font-size-xl);
+  }
+
+  .content {
+    padding: var(--spacing-lg);
+  }
+}
+
+/* Mobile Overlay - Click to close sidebar */
+.overlay {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 998;
+  cursor: pointer;
+}
+
+/* Responsive Design - Mobile (<640px) */
+@media (max-width: 640px) {
+  /* Show overlay when needed */
+  .overlay {
+    display: block;
+  }
+
+  /* Show hamburger menu in navbar */
+  .hamburger {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .container {
+    flex-direction: column;
+  }
+
+  /* Sidebar: Hidden by default, shown when .sidebarOpen */
+  .sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 280px;
+    height: 100vh;
+    background-color: var(--color-bg-light);
+    border-right: 1px solid var(--color-border);
+    z-index: 999;
+    overflow-y: auto;
+    padding: var(--spacing-lg) var(--spacing-md);
+    transform: translateX(-100%);
+    transition: transform var(--transition-normal);
+  }
+
+  /* Sidebar visible when open */
+  .sidebarOpen {
+    transform: translateX(0);
+  }
+
+  .userInfo {
+    margin-bottom: var(--spacing-lg);
+    padding-bottom: var(--spacing-md);
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .userContainer {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+    margin-bottom: var(--spacing-md);
+  }
+
+  .userDetails {
+    display: block;
+  }
+
+  .userAvatar {
+    width: 40px;
+    height: 40px;
+  }
+
+  .logoutButton {
+    width: 100%;
+    padding: var(--spacing-sm);
+    font-size: var(--font-size-sm);
+  }
+
+  .projectsSection {
+    display: block;
+    flex: 1;
+  }
+
+  .projectsTitle {
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-bold);
+    margin-bottom: var(--spacing-md);
+  }
+
+  .notificationsSection {
+    display: block;
+    margin-top: auto;
+    padding-top: var(--spacing-md);
+    border-top: 1px solid var(--color-border);
+  }
+
+  .main {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .navbar {
+    padding: var(--spacing-md);
+    gap: var(--spacing-sm);
+    align-items: center;
+  }
+
+  .navbarTitle {
+    font-size: var(--font-size-lg);
+    margin: 0;
+    flex: 1;
+    min-width: 0;
+    word-break: break-word;
+  }
+
+  .content {
+    padding: var(--spacing-md);
+  }
+}
